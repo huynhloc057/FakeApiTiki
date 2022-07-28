@@ -1,0 +1,20 @@
+{
+  "name": "serveruser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "HuynhLoc",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "json-server": "^0.17.0",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}

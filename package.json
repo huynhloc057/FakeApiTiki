@@ -8,7 +8,7 @@
     "start": "node server.js"
   },
   "author": "HuynhLoc",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.0",
     "json-server": "^0.17.0",

@@ -3,7 +3,7 @@ const fs = require("fs");
 const bodyParser = require("body-parser");
 const jsonServer = require("json-server");
 const jwt = require("jsonwebtoken");
-const router = jsonServer.router("user.json");
+const router = jsonServer.router("./user.json");
 
 const server = jsonServer.create();
 
@@ -78,6 +78,7 @@ server.post("/api/auth/register", (req, res) => {
         }
       }
     );
+    // writeData();
   });
 
   const access_token = createToken({ name, email, password });

@@ -99,10 +99,23 @@ server.post("/api/auth/login", (req, res) => {
   res.status(200).json({ access_token, name });
 });
 
-server.use((req, res, next) => {
-  // Middleware to disable CORS
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
+server.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  // handle OPTIONS method
+  if ("OPTIONS" == req.method) {
+    return res.sendStatus(200);
+  } else {
+    next();
+  }
 });
 server.use(router);
 

@@ -4,11 +4,13 @@ const bodyParser = require("body-parser");
 const jsonServer = require("json-server");
 const jwt = require("jsonwebtoken");
 const router = jsonServer.router("./user.json");
+const cors = require("cors");
 
 const server = jsonServer.create();
 
 const userdb = JSON.parse(fs.readFileSync("user.json", "utf-8"));
 
+server.use(cors());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 server.use(jsonServer.defaults());
@@ -99,24 +101,6 @@ server.post("/api/auth/login", (req, res) => {
   res.status(200).json({ access_token, name });
 });
 
-server.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "X-Requested-With,content-type"
-  );
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  // handle OPTIONS method
-  if ("OPTIONS" == req.method) {
-    return res.sendStatus(200);
-  } else {
-    next();
-  }
-});
 server.use(router);
 
 const PORT = process.env.PORT || 5000;

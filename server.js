@@ -99,6 +99,11 @@ server.post("/api/auth/login", (req, res) => {
   res.status(200).json({ access_token, name });
 });
 
+server.use((req, res, next) => {
+  // Middleware to disable CORS
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 server.use(router);
 
 const PORT = process.env.PORT || 5000;
